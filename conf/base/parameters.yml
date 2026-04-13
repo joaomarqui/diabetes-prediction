@@ -1,0 +1,49 @@
+# ==========================================
+# Parameters - Diabetes Prediction Project
+# ==========================================
+
+# --- Data Engineering ---
+
+# Columns where 0 is biologically impossible and should be treated as missing
+zero_as_null_columns:
+  - Glucose
+  - BloodPressure
+  - SkinThickness
+  - Insulin
+  - BMI
+
+# KNN imputer settings
+knn_imputer_neighbors: 5
+
+# Outlier thresholds (quantile-based)
+outlier_q1: 0.05
+outlier_q3: 0.95
+
+# Train/test split
+test_size: 0.20
+random_state: 42
+
+# Columns to scale (numeric features)
+# NOTE: must be UPPERCASE — create_features uppercases all column names
+columns_to_scale:
+  - GLUCOSE
+  - BLOODPRESSURE
+  - SKINTHICKNESS
+  - INSULIN
+  - BMI
+  - DIABETESPEDIGREEFUNCTION
+  - AGE
+  - PREGNANCIES
+  - NEW_GLUCOSE_INSULIN
+  - NEW_GLUCOSE_PREGNANCIES
+
+# --- Modelling ---
+
+# Model to use (can be swapped via YAML without code changes)
+model_class_path: "sklearn.ensemble.RandomForestClassifier"
+model_init_args:
+  n_estimators: 100
+  random_state: 42
+
+# Target column
+target_column: "OUTCOME"

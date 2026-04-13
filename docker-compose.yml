@@ -1,0 +1,21 @@
+# ============================================================
+# docker-compose.yml - Diabetes Prediction API
+# ============================================================
+# conf/ and data/ are mounted as volumes so:
+#   - Config changes don't require a rebuild
+#   - Data (models, predictions) persists across restarts
+#   - Same image can be deployed in different environments
+# ============================================================
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      # Config: read-only (app must not modify config)
+      - ./conf:/app/conf:ro
+      # Data: read-write (pipelines produce output here)
+      - ./data:/app/data
+    environment:
+      - PYTHONUNBUFFERED=1

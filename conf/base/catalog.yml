@@ -1,0 +1,115 @@
+# ==========================================
+# Data Catalog - Diabetes Prediction Project
+# ==========================================
+# ALL CSVDatasets use save_args: {index: false} to avoid
+# the "Unnamed: 0" index column issue when loading back.
+
+# --- 01_raw (read only — no save_args needed) ---
+
+raw_diabetes_modelling:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/diabetes-dataset-modelling.csv
+
+raw_diabetes_inference:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/diabetes-dataset-inference.csv
+
+raw_inference_data:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/diabetes-dataset-inference.csv
+
+# --- 02_intermediate ---
+
+diabetes_zeros_replaced:
+  type: pandas.CSVDataset
+  filepath: data/02_intermediate/diabetes_zeros_replaced.csv
+  save_args:
+    index: false
+
+diabetes_imputed:
+  type: pandas.CSVDataset
+  filepath: data/02_intermediate/diabetes_imputed.csv
+  save_args:
+    index: false
+
+cleaned_diabetes_data:
+  type: pandas.CSVDataset
+  filepath: data/02_intermediate/cleaned_diabetes_data.csv
+  save_args:
+    index: false
+
+diabetes_with_features:
+  type: pandas.CSVDataset
+  filepath: data/02_intermediate/diabetes_with_features.csv
+  save_args:
+    index: false
+
+diabetes_encoded:
+  type: pandas.CSVDataset
+  filepath: data/02_intermediate/diabetes_encoded.csv
+  save_args:
+    index: false
+
+# --- 03_primary ---
+
+master_table:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/master_table.csv
+  save_args:
+    index: false
+
+X_train:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/X_train.csv
+  save_args:
+    index: false
+
+X_test:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/X_test.csv
+  save_args:
+    index: false
+
+y_train:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/y_train.csv
+  save_args:
+    index: false
+
+y_test:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/y_test.csv
+  save_args:
+    index: false
+
+# --- 06_models ---
+
+feature_columns:
+  type: json.JSONDataset
+  filepath: data/06_models/feature_columns.json
+
+production_scaler:
+  type: pickle.PickleDataset
+  filepath: data/06_models/production_scaler.pkl
+
+production_model:
+  type: pickle.PickleDataset
+  filepath: data/06_models/production_model.pkl
+
+# --- 07_model_output ---
+
+model_metrics:
+  type: json.JSONDataset
+  filepath: data/07_model_output/model_metrics.json
+
+prepared_inference_data:
+  type: pandas.CSVDataset
+  filepath: data/07_model_output/prepared_inference_data.csv
+  save_args:
+    index: false
+
+inference_predictions:
+  type: pandas.CSVDataset
+  filepath: data/07_model_output/inference_predictions.csv
+  save_args:
+    index: false
