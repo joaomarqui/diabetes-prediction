@@ -42,7 +42,7 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 # Project path
 # ---------------------------------------------------------------------------
-PROJECT_PATH = Path(__file__).parent.parent.parent.parent.resolve()
+PROJECT_PATH = Path(__file__).resolve().parents[2]
 
 # ---------------------------------------------------------------------------
 # Thread-safe shared state
